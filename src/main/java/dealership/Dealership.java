@@ -1,11 +1,13 @@
 package dealership;
 
+import behaviours.IBuyable;
+import behaviours.ISellable;
 import car.Car;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Dealership {
+public class Dealership implements IBuyable, ISellable {
 
     private int till;
     private ArrayList<Car> dealershipCars;
@@ -21,5 +23,14 @@ public class Dealership {
 
     public ArrayList getDealershipCars(){
         return dealershipCars;
+    }
+
+    public void buy(Car car){
+        dealershipCars.add(car);
+    }
+
+    public void sell(Car car){
+        dealershipCars.remove(car);
+        till += car.getPrice();
     }
 }

@@ -33,5 +33,19 @@ public class DealershipTest {
     public void dealershipCarsStartsEmpty(){
         assertEquals(0, dealership.getDealershipCars().size());
     }
+    @Test
+    public void dealershipCanSourceCar(){
+        dealership.buy(petrolCar);
+        assertEquals(1, dealership.getDealershipCars().size());
+    }
+    @Test
+    public void dealershipCanSellCarToCustomer(){
+        dealership.buy(petrolCar);
+        customer.buy(petrolCar);
+        dealership.sell(petrolCar);
+        assertEquals(0, dealership.getDealershipCars().size());
+        assertEquals(1000, customer.getWallet());
+        assertEquals(5006000, dealership.getTill());
+    }
 
 }
